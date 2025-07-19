@@ -1,4 +1,5 @@
- database:
+services:
+  database:
     image: ghcr.io/quod-financial/postgres_marketsim:latest
     container_name: market-simulator-database
     networks:
