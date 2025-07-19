@@ -10,15 +10,15 @@ network_checkCreate(){
 }
 
 qstart(){
+network_checkCreate
 if [[ $1 == 'db' ]];then
-        network_checkCreate
         docker compose -f $DB_DIR/docker-compose.yml up -d
 else
-        if [[ -f $START_DIR/$1 ]];then
-                docker compose -f  cd $SIM_DIR/$1/docker-compose up -d
+        if [[ -d $SIM_DIR/$1 ]];then
+                docker compose -f  $SIM_DIR/$1/docker-compose.yml up -d
         else
                 echo "Simulator haven't been found"
-                exit 1
+                return 1
         fi
 fi
 }
@@ -26,6 +26,14 @@ fi
 qstop(){
         if [[ $1 == 'db' ]];then
                 docker compose -f $DB_DIR/docker-compose.yml down
+else
+        if [[ -d $SIM_DIR/$1 ]];then
+                docker compose -f  $SIM_DIR/$1/docker-compose.yml down
+        else
+                echo "Simulator haven't been found"
+                return 1
+        fi
+
         fi
 }
 
