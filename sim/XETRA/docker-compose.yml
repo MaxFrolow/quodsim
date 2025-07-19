@@ -12,11 +12,8 @@ services:
     environment:
       - INSTANCE_ID=XETRA
       - PREFIX=QUOD
-    depends_on:
-      liquibase:
-        condition: service_completed_successfully
 
-  networks:
-    market-simulator-net:
-      external: true
+networks:
+  market-simulator-net:
+    external: true
 
