@@ -22,5 +22,8 @@ cddb(){
  cd ~/mktsim/db/
 }
 
+cdss(){
+ cd ~/mktsim/sim/
+}
 
 source $SCRIPT_DIR/be_worker.sh
